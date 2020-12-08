@@ -1,0 +1,26 @@
+.bottom-nav-container {
+  /* border: 3px solid red; */
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  height: 15vh;
+  min-height: 6vh;
+}
+
+.logo-title,
+.links {
+  /* border: 2px solid blue; */
+  display: flex;
+  align-items: center;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.links a,
+.logo-title p,
+.logo-title h3 {
+  /* border: 2px solid green; */
+  margin: 10px;
+  text-decoration: none;
+  color: white;
+}

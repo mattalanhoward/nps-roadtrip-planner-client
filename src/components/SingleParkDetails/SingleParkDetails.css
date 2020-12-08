@@ -1,0 +1,20 @@
+.details-item-container {
+  /* border: 2px solid blue; */
+  /* border-bottom: 1px solid black; */
+  margin: 20px auto;
+  width: 80%;
+  text-align: left;
+}
+
+.details-item-container h5 {
+  margin: 5px auto;
+}
+
+.details-item-container p {
+  margin: 8px auto;
+}
+
+.fee-container {
+  display: flex;
+  flex-direction: column;
+}

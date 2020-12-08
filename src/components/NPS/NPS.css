@@ -1,0 +1,47 @@
+/* .us-vector-map {
+  margin: "1rem auto";
+  width: "50%";
+} */
+
+.nps-landing-container {
+  /* border: 2px solid red; */
+  height: 75vh;
+  width: 100%;
+  background-image: url("../../images/high-sierra-tent.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.nps-input-container {
+  width: 100%;
+  height: 20vh;
+  margin-top: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.nps-input-container h1 {
+  margin: 0;
+}
+.nps-input-container form {
+  /* border: 2px solid green; */
+}
+
+.nps-input-container form select {
+  /* border: 2px solid orange; */
+  width: 30%;
+  border-radius: 5px;
+  height: 5vh;
+}
+
+.nps-input-container a {
+  /* border: 2px solid yellow; */
+  color: white;
+}

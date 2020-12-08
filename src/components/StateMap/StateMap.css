@@ -1,0 +1,48 @@
+.map-container {
+  /* border: 2px solid orange; */
+  width: 100%;
+  height: 300px;
+  margin: 30px auto;
+  border-radius: 5px;
+}
+
+.mapboxgl-ctrl-attrib-inner {
+  display: none;
+}
+
+.marker {
+  width: 20px;
+  height: auto;
+}
+
+.park-popup {
+  /* border: 3px solid red; */
+  width: 50%;
+  font-size: x-small;
+}
+
+.park-popup h3 {
+  margin: 2px;
+}
+
+.park-popup p {
+  margin: 2px;
+}
+
+/* .pin {
+  width: 20px;
+  height: auto;
+} */
+
+/* .sidebarStyle {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 12px;
+  background-color: #404040;
+  color: #ffffff;
+  z-index: 1 !important;
+  padding: 6px;
+  font-weight: bold;
+} */

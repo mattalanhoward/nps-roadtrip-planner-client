@@ -1,0 +1,17 @@
+.state-park-container {
+  /* border: 2px solid red; */
+  min-height: 75vh;
+  width: 90%;
+  margin: 10px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.single-park-container {
+  /* border: 2px solid green; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px auto;
+}

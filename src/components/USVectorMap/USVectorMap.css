@@ -1,0 +1,16 @@
+.us-vector-map {
+  margin: "1rem auto";
+  width: "50%";
+}
+
+svg {
+  stroke: #fff;
+  /* margin: "1rem auto";
+  width: "75%"; */
+}
+
+path {
+  fill: #a82b2b;
+  cursor: pointer;
+  outline: none;
+}
