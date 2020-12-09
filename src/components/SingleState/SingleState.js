@@ -8,9 +8,6 @@ import StateMap from "../StateMap/StateMap";
 import "./SingleState.css";
 import Select from "react-select";
 
-const MAPBOX_ACCESS_TOKEN = `${process.env.REACT_APP_MAPBOX_API_KEY}`;
-mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
-
 export default class SingleState extends Component {
   state = {
     singleStateParks: [],
@@ -22,10 +19,14 @@ export default class SingleState extends Component {
   singleStateAbbr = this.props.match.params.details;
 
   async componentDidMount() {
+    const MAPBOX_ACCESS_TOKEN = localStorage.getItem("mapBoxApiToken");
+    mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
     await this.fetchState(this.singleStateAbbr);
   }
 
   async fetchState() {
+    // const apiToken = this.props.apiTokens.npsApiToken;
+
     try {
       const response = await getAllParksByState(this.singleStateAbbr);
       this.setState({

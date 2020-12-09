@@ -80,9 +80,9 @@ export default class SinglePark extends Component {
 
   render() {
     const parkInfo = this.props.park;
-    console.log(`Props in Single Park`, this.props);
+    // console.log(`Props in Single Park`, this.props);
     const props = this.props;
-    console.log(`Park Info`, parkInfo);
+    // console.log(`Park Info`, parkInfo);
     const {
       showCarousel,
       showParkDetails,
