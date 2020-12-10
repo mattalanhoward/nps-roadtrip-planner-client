@@ -2,7 +2,7 @@
 //Drop down to search by state.
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { getAllParks } from "../../services/npsService";
+// import { getAllParks } from "../../services/npsService";
 import TopNav from "../TopNav/TopNav";
 import "./NPS.css";
 import USVectorMap from "../USVectorMap/USVectorMap";
@@ -24,19 +24,19 @@ export class NPS extends Component {
     this.getStateInfo();
   }
 
-  async fetchAllParks() {
-    try {
-      const response = await getAllParks();
-      this.setState({
-        allParks: response.data,
-        loading: false,
-      });
-    } catch (error) {
-      this.setState({
-        errorMessage: error,
-      });
-    }
-  }
+  // async fetchAllParks() {
+  //   try {
+  //     const response = await getAllParks();
+  //     this.setState({
+  //       allParks: response.data,
+  //       loading: false,
+  //     });
+  //   } catch (error) {
+  //     this.setState({
+  //       errorMessage: error,
+  //     });
+  //   }
+  // }
 
   getStateInfo = () => {
     this.setState({

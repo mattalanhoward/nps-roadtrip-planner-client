@@ -58,9 +58,10 @@ class App extends React.Component {
       //   // )
       //   localStorage.setItem("npsApiToken", response.data.npsApiToken)
       // )
-      .then((response) =>
-        localStorage.setItem("mapBoxApiToken", response.data.mapBoxApiToken)
-      )
+      .then((response) => [
+        localStorage.setItem("mapBoxApiToken", response.data.mapBoxApiToken),
+        localStorage.setItem("npsApiToken", response.data.npsApiToken),
+      ])
 
       .catch((err) => {
         console.log(err);
