@@ -9,6 +9,7 @@ import USVectorMap from "../USVectorMap/USVectorMap";
 import BottomNav from "../BottomNav/BottomNav";
 import highSierraTent from "../../images/high-sierra-tent.jpeg";
 import stateData from "../../stateList.json";
+import { getAllParks } from "../../services/npsService";
 
 export class NPS extends Component {
   state = {
@@ -20,28 +21,34 @@ export class NPS extends Component {
   };
 
   async componentDidMount() {
-    // await this.fetchAllParks();
     this.getStateInfo();
+    await this.fetchAllParks();
   }
 
-  // async fetchAllParks() {
-  //   try {
-  //     const response = await getAllParks();
-  //     this.setState({
-  //       allParks: response.data,
-  //       loading: false,
-  //     });
-  //   } catch (error) {
-  //     this.setState({
-  //       errorMessage: error,
-  //     });
-  //   }
-  // }
+  async fetchAllParks() {
+    try {
+      const response = await getAllParks();
+      this.setState(
+        {
+          allParks: response.data,
+          loading: false,
+        },
+        () => console.log(this.state.allParks)
+      );
+    } catch (error) {
+      this.setState({
+        errorMessage: error,
+      });
+    }
+  }
 
   getStateInfo = () => {
-    this.setState({
-      allStateInfo: stateData,
-    });
+    this.setState(
+      {
+        allStateInfo: stateData,
+      },
+      () => console.log(this.state.allStateInfo)
+    );
   };
 
   handleChange = (event) => {

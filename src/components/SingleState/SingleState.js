@@ -18,19 +18,16 @@ export default class SingleState extends Component {
 
   singleStateAbbr = this.props.match.params.details;
 
-  async componentDidMount() {
-    const API_KEY = localStorage.getItem("npsApiToken");
-
-    const MAPBOX_ACCESS_TOKEN = localStorage.getItem("mapBoxApiToken");
-    mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
-    await this.fetchState({ singleStateAbbr: this.singleStateAbbr, API_KEY });
+  componentDidMount() {
+    // const MAPBOX_ACCESS_TOKEN = localStorage.getItem("mapBoxApiToken");
+    // mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+    this.fetchState({ singleStateAbbr: this.singleStateAbbr });
   }
 
-  async fetchState({ singleStateAbbr, API_KEY }) {
-    // const apiToken = this.props.apiTokens.npsApiToken;
-
+  async fetchState({ singleStateAbbr }) {
     try {
-      const response = await getAllParksByState({ singleStateAbbr, API_KEY });
+      const response = await getAllParksByState({ singleStateAbbr });
+      console.log(`BACKEND RESPONSE`, response.data);
       this.setState({
         singleStateParks: response.data,
         loading: false,

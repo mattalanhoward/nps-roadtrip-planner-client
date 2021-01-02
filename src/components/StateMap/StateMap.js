@@ -7,7 +7,7 @@ import "../StateMap/StateMap.css";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import Geocoder from "react-mapbox-gl-geocoder";
 
-const MAPBOX_ACCESS_TOKEN = `${process.env.REACT_APP_MAPBOX_API_KEY}`;
+const MAPBOX_ACCESS_TOKEN = process.env.REACT_APP_MAPBOX_API_KEY;
 mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 
 const mapStyle = {

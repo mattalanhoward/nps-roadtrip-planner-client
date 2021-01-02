@@ -9,17 +9,14 @@ import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login";
 import SingleState from "./components/SingleState/SingleState";
 import TopNav from "./components/TopNav/TopNav";
-import { getApiTokens } from "./services/apiServices";
 
 class App extends React.Component {
   state = {
     authenticated: false,
     user: {},
-    apiTokens: {},
   };
 
   componentDidMount = async () => {
-    await this.handleGetApiTokens();
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
       validateSession(accessToken)
@@ -47,30 +44,8 @@ class App extends React.Component {
     });
   };
 
-  handleGetApiTokens = () => {
-    getApiTokens()
-      // .then((response) =>
-      //   // this.setState(
-      //   //   {
-      //   //     apiTokens: response.data,
-      //   //   },
-      //   //   () => console.log(this.state)
-      //   // )
-      //   localStorage.setItem("npsApiToken", response.data.npsApiToken)
-      // )
-      .then((response) => [
-        localStorage.setItem("mapBoxApiToken", response.data.mapBoxApiToken),
-        localStorage.setItem("npsApiToken", response.data.npsApiToken),
-      ])
-
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   render() {
     const { authenticated } = this.state;
-    // console.log(`APPSTATE`, this.state);
     return (
       <div className="App">
         <BrowserRouter>
@@ -105,7 +80,6 @@ class App extends React.Component {
               component={SingleState}
               logout={() => this.handleLogout}
               user={this.state.user}
-              apiTokens={this.state.apiTokens}
             />
             <AnonRoute
               exact

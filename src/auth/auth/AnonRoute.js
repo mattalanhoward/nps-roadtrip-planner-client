@@ -8,7 +8,6 @@ const AnonRoute = ({
   authenticate,
   logout,
   user,
-  // apiTokens,
   ...rest
 }) => {
   return (
@@ -22,7 +21,6 @@ const AnonRoute = ({
             authenticate={authenticate}
             authenticated={authenticated}
             user={user}
-            // apiTokens={apiTokens}
           />
         )
       )}
