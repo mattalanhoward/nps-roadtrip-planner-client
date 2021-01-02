@@ -60,14 +60,14 @@ class App extends React.Component {
             />
             <AnonRoute
               exact
-              path="/signup"
+              path="/user/signup"
               authenticated={authenticated}
               authenticate={this.authenticate}
               component={Signup}
             />
             <AnonRoute
               exact
-              path="/login"
+              path="/user/login"
               authenticated={authenticated}
               authenticate={this.authenticate}
               component={Login}
