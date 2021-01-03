@@ -19,8 +19,8 @@ export default class SingleState extends Component {
   singleStateAbbr = this.props.match.params.details;
 
   componentDidMount() {
-    // const MAPBOX_ACCESS_TOKEN = localStorage.getItem("mapBoxApiToken");
-    // mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
+    console.log(`Single State user`, this.props.user._id);
+
     this.fetchState({ singleStateAbbr: this.singleStateAbbr });
   }
 

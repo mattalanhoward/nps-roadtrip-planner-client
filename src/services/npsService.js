@@ -25,23 +25,19 @@ export const getAllParks = () => {
     .catch((error) => error);
 };
 
-//Making the call on the backend to the NPS API
-// export const getAllParks = () => {
-//   console.log(`GET ALL PARKS`);
-//   return axios
-//     .create({
-//       baseURL: "https://developer.nps.gov/api/v1/",
-//       headers: { "X-Api-Key": API_KEY },
-//     })
-//     .get("/")
-//     .then((response) => response.data)
-//     .catch((error) => error);
-// };
-
 //Making the call on the Back End to the NPS API
 export const getAllParksByState = ({ singleStateAbbr }) => {
   return service
     .get(`/state/${singleStateAbbr}`)
     .then((response) => response.data)
     .catch((error) => error);
+};
+
+//Add Favorite
+export const addFavoritePark = (parkCode, userId) => {
+  console.log(parkCode, userId);
+  return service
+    .post("/park/favorites", { parkCode, userId })
+    .then((response) => response)
+    .catch((error) => (`Error Adding Favorite`, error));
 };

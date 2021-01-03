@@ -13,6 +13,7 @@ import whitestar from "../../images/white-star.svg";
 import yellowstar from "../../images/yellow-star.svg";
 import truckbw from "../../images/roadtrip.svg";
 import truckcolor from "../../images/roadtripcolor.svg";
+import { addFavoritePark } from "../../services/npsService";
 
 const popupStyle = {
   borderRadius: 2,
@@ -49,14 +50,24 @@ export default class SinglePark extends Component {
   };
 
   handleFavorite = () => {
-    this.state.isFavorite ? this.removeFavorite() : this.addFavorite();
+    this.state.isFavorite ? this.favorite() : this.favorite();
+
+    // this.state.isFavorite ? this.removeFavorite() : this.addFavorite();
     this.setState({
       isFavorite: !this.state.isFavorite,
     });
   };
 
+  favorite = () => {
+    console.log(`Add Favorite`, this.props.park.parkCode);
+    console.log(`user`, this.props.user._id);
+    addFavoritePark(this.props.park.parkCode, this.props.user._id);
+  };
+
   addFavorite = () => {
-    console.log(`Add Favorite`);
+    console.log(`Add Favorite`, this.props.park.parkCode);
+    console.log(`user`, this.props.user._id);
+    addFavoritePark(this.props.park.parkCode, this.props.user._id);
   };
 
   removeFavorite = () => {
