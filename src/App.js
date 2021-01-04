@@ -9,6 +9,7 @@ import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login";
 import SingleState from "./components/SingleState/SingleState";
 import TopNav from "./components/TopNav/TopNav";
+import usersFavoriteParks from "./components/UsersFavoriteParks/usersFavoriteParks";
 
 class App extends React.Component {
   state = {
@@ -81,6 +82,16 @@ class App extends React.Component {
               logout={() => this.handleLogout}
               user={this.state.user}
             />
+            <AnonRoute
+              exact
+              path="/favorites"
+              authenticated={authenticated}
+              authenticate={this.authenticate}
+              component={usersFavoriteParks}
+              logout={() => this.handleLogout}
+              user={this.state.user}
+            />
+
             <AnonRoute
               exact
               path="/github"

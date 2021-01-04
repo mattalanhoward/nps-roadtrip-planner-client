@@ -8,6 +8,7 @@ import StateMap from "../StateMap/StateMap";
 import "./SingleState.css";
 import Select from "react-select";
 import { getFavorites } from "../../services/npsService";
+import usersFavoriteParks from "../UsersFavoriteParks/usersFavoriteParks";
 
 export default class SingleState extends Component {
   state = {

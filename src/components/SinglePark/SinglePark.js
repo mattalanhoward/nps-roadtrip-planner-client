@@ -41,7 +41,9 @@ export default class SinglePark extends Component {
     console.log(`this.props.favoriteParks`, this.props.usersFavoriteParks);
     this.setState(
       {
-        usersFavoriteParks: this.props.usersFavoriteParks,
+        usersFavoriteParks: this.props.usersFavoriteParks
+          ? this.props.usersFavoriteParks
+          : ["abcd"],
       },
       () => console.log(`SinglePark mounted`, this.state)
     );
@@ -192,7 +194,7 @@ export default class SinglePark extends Component {
                 />
               </div>
             )}
-            <h1>{this.state.successMessage}</h1>
+            {/* <h1>{this.state.successMessage}</h1> */}
 
             <p>{parkInfo.description}</p>
             <p>

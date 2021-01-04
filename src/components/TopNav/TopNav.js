@@ -14,6 +14,8 @@ export default class TopNav extends Component {
         </div>
         <div className="links">
           <Link to="/">Home</Link>
+          {props.authenticated && <Link to="/favorites">Favorites</Link>}
+
           {!props.authenticated && <Link to="/user/login">Login</Link>}
           {!props.authenticated && <Link to="/user/signup">Signup</Link>}
           {props.authenticated && (
