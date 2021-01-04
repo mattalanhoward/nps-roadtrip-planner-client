@@ -13,7 +13,7 @@ import whitestar from "../../images/white-star.svg";
 import yellowstar from "../../images/yellow-star.svg";
 import truckbw from "../../images/roadtrip.svg";
 import truckcolor from "../../images/roadtripcolor.svg";
-import { addFavoritePark } from "../../services/npsService";
+import { addFavoritePark, getFavorites } from "../../services/npsService";
 
 const popupStyle = {
   borderRadius: 2,
@@ -31,6 +31,20 @@ export default class SinglePark extends Component {
     singleParkDetails: null,
     isFavorite: false,
     isOnRoadTrip: false,
+    usersFavoriteParks: ["abcd"],
+    successMessage: "",
+  };
+
+  componentDidMount = () => {
+    console.log(`Component did mount`);
+    console.log(this.props.user.favoriteParks);
+    console.log(`this.props.favoriteParks`, this.props.usersFavoriteParks);
+    this.setState(
+      {
+        usersFavoriteParks: this.props.usersFavoriteParks,
+      },
+      () => console.log(`SinglePark mounted`, this.state)
+    );
   };
 
   togglePhotos = () => {
@@ -49,30 +63,45 @@ export default class SinglePark extends Component {
     );
   };
 
-  handleFavorite = () => {
-    this.state.isFavorite ? this.favorite() : this.favorite();
+  // handleFavorite = () => {
+  //   this.state.isFavorite ? this.favorite() : this.favorite();
 
-    // this.state.isFavorite ? this.removeFavorite() : this.addFavorite();
+  //   // this.state.isFavorite ? this.removeFavorite() : this.addFavorite();
+  //   this.setState({
+  //     isFavorite: !this.state.isFavorite,
+  //   });
+  // };
+
+  handleFavorite = () => {
+    console.log(`Handle Favorite Fired`, this.props.park.parkCode);
+    console.log(`user`, this.props.user._id);
+    addFavoritePark(this.props.park.parkCode, this.props.user._id)
+      .then((response) => {
+        this.setState(
+          {
+            usersFavoriteParks: response.favoriteParks,
+            successMessage: "Successfully added to favorites",
+          },
+          () => console.log(`Users favorites `, this.state)
+        );
+      })
+      .catch((err) => {
+        console.log("Error updating favorites ", err);
+      });
     this.setState({
       isFavorite: !this.state.isFavorite,
     });
   };
 
-  favorite = () => {
-    console.log(`Add Favorite`, this.props.park.parkCode);
-    console.log(`user`, this.props.user._id);
-    addFavoritePark(this.props.park.parkCode, this.props.user._id);
-  };
+  // addFavorite = () => {
+  //   console.log(`Add Favorite`, this.props.park.parkCode);
+  //   console.log(`user`, this.props.user._id);
+  //   addFavoritePark(this.props.park.parkCode, this.props.user._id);
+  // };
 
-  addFavorite = () => {
-    console.log(`Add Favorite`, this.props.park.parkCode);
-    console.log(`user`, this.props.user._id);
-    addFavoritePark(this.props.park.parkCode, this.props.user._id);
-  };
-
-  removeFavorite = () => {
-    console.log(`Remove  Favorite`);
-  };
+  // removeFavorite = () => {
+  //   console.log(`Remove  Favorite`);
+  // };
 
   handleRoadTrip = () => {
     this.state.isOnRoadTrip ? this.removeFromTrip() : this.addToTrip();
@@ -100,11 +129,13 @@ export default class SinglePark extends Component {
       singleParkDetails,
       isFavorite,
       isOnRoadTrip,
+      usersFavoriteParks,
     } = this.state;
 
     const images = parkInfo.images;
 
     // console.log(images);
+
     const url = images.map((imageInfo) => imageInfo.url);
     // console.log(url);
 
@@ -123,7 +154,7 @@ export default class SinglePark extends Component {
               <div className="favorite-icons">
                 <Popup
                   content={
-                    isFavorite ? (
+                    usersFavoriteParks.includes(parkInfo.parkCode) ? (
                       <p>Remove from Favorites</p>
                     ) : (
                       <p>Add to Favorites</p>
@@ -131,7 +162,7 @@ export default class SinglePark extends Component {
                   }
                   trigger={
                     <p onClick={this.handleFavorite}>
-                      {isFavorite ? (
+                      {usersFavoriteParks.includes(parkInfo.parkCode) ? (
                         <img src={yellowstar} alt={"yellowstar"}></img>
                       ) : (
                         <img src={whitestar} alt={"whitestar"}></img>
@@ -161,6 +192,7 @@ export default class SinglePark extends Component {
                 />
               </div>
             )}
+            <h1>{this.state.successMessage}</h1>
 
             <p>{parkInfo.description}</p>
             <p>
@@ -208,10 +240,10 @@ export default class SinglePark extends Component {
             </div>
           </div>
           <div className="photo-container">
-            <img
+            {/* <img
               src={parkInfo.images[0].url}
               alt={parkInfo.images[0].altText}
-            ></img>
+            ></img> */}
             <h5>More Photos</h5>
           </div>
           {/* <PhotoCarousel url={url} /> */}

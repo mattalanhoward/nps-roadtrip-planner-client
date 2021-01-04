@@ -33,11 +33,20 @@ export const getAllParksByState = ({ singleStateAbbr }) => {
     .catch((error) => error);
 };
 
+//Get Favorite
+export const getFavorites = (userId) => {
+  console.log(`/park/getFavorites `, userId);
+  return service
+    .post("/park/usersFavorites", { userId })
+    .then((response) => response.data)
+    .catch((error) => (`Error getting favorite parks`, error));
+};
+
 //Add Favorite
 export const addFavoritePark = (parkCode, userId) => {
   console.log(parkCode, userId);
   return service
     .post("/park/favorites", { parkCode, userId })
-    .then((response) => response)
+    .then((response) => response.data)
     .catch((error) => (`Error Adding Favorite`, error));
 };

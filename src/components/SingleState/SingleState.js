@@ -7,6 +7,7 @@ import mapboxgl from "mapbox-gl";
 import StateMap from "../StateMap/StateMap";
 import "./SingleState.css";
 import Select from "react-select";
+import { getFavorites } from "../../services/npsService";
 
 export default class SingleState extends Component {
   state = {
@@ -14,6 +15,7 @@ export default class SingleState extends Component {
     loading: true,
     lat: null,
     lng: null,
+    usersFavoriteParks: [],
   };
 
   singleStateAbbr = this.props.match.params.details;
@@ -22,6 +24,18 @@ export default class SingleState extends Component {
     console.log(`Single State user`, this.props.user._id);
 
     this.fetchState({ singleStateAbbr: this.singleStateAbbr });
+    getFavorites(this.props.user._id)
+      .then((response) => {
+        this.setState(
+          {
+            usersFavoriteParks: response.favoriteParks,
+          },
+          () => console.log(`Users favorites `, this.state)
+        );
+      })
+      .catch((err) => {
+        console.log("Error updating favorites ", err);
+      });
   }
 
   async fetchState({ singleStateAbbr }) {
@@ -42,7 +56,7 @@ export default class SingleState extends Component {
   }
 
   render() {
-    const { singleStateParks } = this.state;
+    const { singleStateParks, usersFavoriteParks } = this.state;
     console.log(`Props in Single State`, this.props);
     const props = this.props;
     return (
@@ -63,6 +77,7 @@ export default class SingleState extends Component {
                   logout={props.logout}
                   authenticated={props.authenticated}
                   user={props.user}
+                  usersFavoriteParks={usersFavoriteParks}
                 />
               );
             })}
