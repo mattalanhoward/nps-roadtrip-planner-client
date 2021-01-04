@@ -36,16 +36,18 @@ export default class SinglePark extends Component {
   };
 
   componentDidMount = () => {
-    console.log(`Component did mount`);
-    console.log(this.props.user.favoriteParks);
-    console.log(`this.props.favoriteParks`, this.props.usersFavoriteParks);
+    // console.log(`Component did mount`);
+    // console.log(this.props.user.favoriteParks.map((park) => park.parkCode));
+    // console.log(`this.props.favoriteParks`, this.props.usersFavoriteParks);
+    const parkCodesArr = this.props.user.favoriteParks.map(
+      (park) => park.parkCode
+    );
+
     this.setState(
       {
-        usersFavoriteParks: this.props.usersFavoriteParks
-          ? this.props.usersFavoriteParks
-          : ["abcd"],
-      },
-      () => console.log(`SinglePark mounted`, this.state)
+        usersFavoriteParks: parkCodesArr ? parkCodesArr : ["abcd"],
+      }
+      // () => console.log(`SinglePark mounted`, this.state)
     );
   };
 
@@ -60,8 +62,8 @@ export default class SinglePark extends Component {
       {
         showParkDetails: !this.state.showParkDetails,
         singleParkDetails: target,
-      },
-      () => console.log(this.state)
+      }
+      // () => console.log(this.state)
     );
   };
 
@@ -75,13 +77,16 @@ export default class SinglePark extends Component {
   // };
 
   handleFavorite = () => {
-    console.log(`Handle Favorite Fired`, this.props.park.parkCode);
-    console.log(`user`, this.props.user._id);
-    addFavoritePark(this.props.park.parkCode, this.props.user._id)
+    // console.log(`Handle Favorite Fired`, this.props.park);
+    // console.log(`user`, this.props.user._id);
+    addFavoritePark(this.props.park, this.props.user._id)
       .then((response) => {
+        // console.log(response.favoriteParks.map((park) => park.parkCode));
         this.setState(
           {
-            usersFavoriteParks: response.favoriteParks,
+            usersFavoriteParks: response.favoriteParks.map(
+              (park) => park.parkCode
+            ),
             successMessage: "Successfully added to favorites",
           },
           () => console.log(`Users favorites `, this.state)
@@ -140,6 +145,8 @@ export default class SinglePark extends Component {
 
     const url = images.map((imageInfo) => imageInfo.url);
     // console.log(url);
+
+    // const parkCodesArr = props.user.favoriteParks.map((park) => park.parkCode);
 
     return (
       <div className="park-details-container">

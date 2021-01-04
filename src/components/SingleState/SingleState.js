@@ -22,7 +22,7 @@ export default class SingleState extends Component {
   singleStateAbbr = this.props.match.params.details;
 
   componentDidMount() {
-    console.log(`Single State user`, this.props.user._id);
+    // console.log(`Single State user`, this.props.user._id);
 
     this.fetchState({ singleStateAbbr: this.singleStateAbbr });
     getFavorites(this.props.user._id)
@@ -30,8 +30,8 @@ export default class SingleState extends Component {
         this.setState(
           {
             usersFavoriteParks: response.favoriteParks,
-          },
-          () => console.log(`Users favorites `, this.state)
+          }
+          // () => console.log(`Users favorites `, this.state)
         );
       })
       .catch((err) => {
@@ -58,7 +58,7 @@ export default class SingleState extends Component {
 
   render() {
     const { singleStateParks, usersFavoriteParks } = this.state;
-    console.log(`Props in Single State`, this.props);
+    // console.log(`Props in Single State`, this.props);
     const props = this.props;
     return (
       <div>

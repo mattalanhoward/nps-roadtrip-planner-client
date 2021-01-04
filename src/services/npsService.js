@@ -43,10 +43,10 @@ export const getFavorites = (userId) => {
 };
 
 //Add Favorite
-export const addFavoritePark = (parkCode, userId) => {
-  console.log(parkCode, userId);
+export const addFavoritePark = (park, userId) => {
+  console.log(park, userId);
   return service
-    .post("/park/favorites", { parkCode, userId })
+    .post("/park/favorites", { park, userId })
     .then((response) => response.data)
     .catch((error) => (`Error Adding Favorite`, error));
 };

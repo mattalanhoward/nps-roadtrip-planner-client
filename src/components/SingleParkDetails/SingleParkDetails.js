@@ -43,9 +43,9 @@ export default function SingleParkDetails(props) {
       <div className="details-item-container">
         <h5>Entrance Fees</h5>
         <div className="fee-container">
-          {park.entranceFees.map((fee) => {
+          {park.entranceFees.map((fee, idx) => {
             return (
-              <div className="fee" key={fee.id}>
+              <div className="fee" key={idx}>
                 <Popup
                   content={<p>{fee.description}</p>}
                   trigger={
