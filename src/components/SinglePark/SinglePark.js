@@ -36,19 +36,13 @@ export default class SinglePark extends Component {
   };
 
   componentDidMount = () => {
-    // console.log(`Component did mount`);
-    // console.log(this.props.user.favoriteParks.map((park) => park.parkCode));
-    // console.log(`this.props.favoriteParks`, this.props.usersFavoriteParks);
     const parkCodesArr = this.props.user.favoriteParks.map(
       (park) => park.parkCode
     );
 
-    this.setState(
-      {
-        usersFavoriteParks: parkCodesArr ? parkCodesArr : ["abcd"],
-      }
-      // () => console.log(`SinglePark mounted`, this.state)
-    );
+    this.setState({
+      usersFavoriteParks: parkCodesArr ? parkCodesArr : ["abcd"],
+    });
   };
 
   togglePhotos = () => {
@@ -58,57 +52,30 @@ export default class SinglePark extends Component {
   };
 
   toggleDetails = (target) => {
-    this.setState(
-      {
-        showParkDetails: !this.state.showParkDetails,
-        singleParkDetails: target,
-      }
-      // () => console.log(this.state)
-    );
+    this.setState({
+      showParkDetails: !this.state.showParkDetails,
+      singleParkDetails: target,
+    });
   };
 
-  // handleFavorite = () => {
-  //   this.state.isFavorite ? this.favorite() : this.favorite();
-
-  //   // this.state.isFavorite ? this.removeFavorite() : this.addFavorite();
-  //   this.setState({
-  //     isFavorite: !this.state.isFavorite,
-  //   });
-  // };
-
   handleFavorite = () => {
-    // console.log(`Handle Favorite Fired`, this.props.park);
-    // console.log(`user`, this.props.user._id);
+    this.setState({
+      isFavorite: !this.state.isFavorite,
+    });
+
     addFavoritePark(this.props.park, this.props.user._id)
       .then((response) => {
-        // console.log(response.favoriteParks.map((park) => park.parkCode));
-        this.setState(
-          {
-            usersFavoriteParks: response.favoriteParks.map(
-              (park) => park.parkCode
-            ),
-            successMessage: "Successfully added to favorites",
-          },
-          () => console.log(`Users favorites `, this.state)
-        );
+        this.setState({
+          usersFavoriteParks: response.favoriteParks.map(
+            (park) => park.parkCode
+          ),
+          successMessage: "Successfully added to favorites",
+        });
       })
       .catch((err) => {
         console.log("Error updating favorites ", err);
       });
-    this.setState({
-      isFavorite: !this.state.isFavorite,
-    });
   };
-
-  // addFavorite = () => {
-  //   console.log(`Add Favorite`, this.props.park.parkCode);
-  //   console.log(`user`, this.props.user._id);
-  //   addFavoritePark(this.props.park.parkCode, this.props.user._id);
-  // };
-
-  // removeFavorite = () => {
-  //   console.log(`Remove  Favorite`);
-  // };
 
   handleRoadTrip = () => {
     this.state.isOnRoadTrip ? this.removeFromTrip() : this.addToTrip();
@@ -127,9 +94,7 @@ export default class SinglePark extends Component {
 
   render() {
     const parkInfo = this.props.park;
-    // console.log(`Props in Single Park`, this.props);
     const props = this.props;
-    // console.log(`Park Info`, parkInfo);
     const {
       showCarousel,
       showParkDetails,
@@ -141,12 +106,7 @@ export default class SinglePark extends Component {
 
     const images = parkInfo.images;
 
-    // console.log(images);
-
     const url = images.map((imageInfo) => imageInfo.url);
-    // console.log(url);
-
-    // const parkCodesArr = props.user.favoriteParks.map((park) => park.parkCode);
 
     return (
       <div className="park-details-container">
@@ -201,7 +161,7 @@ export default class SinglePark extends Component {
                 />
               </div>
             )}
-            {/* <h1>{this.state.successMessage}</h1> */}
+            <h1>{this.state.successMessage}</h1>
 
             <p>{parkInfo.description}</p>
             <p>
