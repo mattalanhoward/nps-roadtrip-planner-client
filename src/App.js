@@ -82,7 +82,7 @@ class App extends React.Component {
               logout={() => this.handleLogout}
               user={this.state.user}
             />
-            <AnonRoute
+            <PrivateRoute
               exact
               path="/favorites"
               authenticated={authenticated}

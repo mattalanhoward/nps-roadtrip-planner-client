@@ -36,13 +36,18 @@ export default class SinglePark extends Component {
   };
 
   componentDidMount = () => {
-    const parkCodesArr = this.props.user.favoriteParks.map(
-      (park) => park.parkCode
-    );
+    console.log(`single park user`, this.props.user);
+    if (Object.keys(this.props.user).length > 0) {
+      const parkCodesArr = this.props.user.favoriteParks.map(
+        (park) => park.parkCode
+      );
 
-    this.setState({
-      usersFavoriteParks: parkCodesArr ? parkCodesArr : ["abcd"],
-    });
+      this.setState({
+        usersFavoriteParks: parkCodesArr ? parkCodesArr : ["abcd"],
+      });
+    } else {
+      console.log(`no user signed in`);
+    }
   };
 
   togglePhotos = () => {
@@ -209,10 +214,10 @@ export default class SinglePark extends Component {
             </div>
           </div>
           <div className="photo-container">
-            {/* <img
+            <img
               src={parkInfo.images[0].url}
               alt={parkInfo.images[0].altText}
-            ></img> */}
+            ></img>
             <h5>More Photos</h5>
           </div>
           {/* <PhotoCarousel url={url} /> */}

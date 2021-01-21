@@ -22,7 +22,7 @@ export default class SingleState extends Component {
   singleStateAbbr = this.props.match.params.details;
 
   componentDidMount() {
-    // console.log(`Single State user`, this.props.user._id);
+    console.log(`Single State user`, this.props.user._id);
 
     this.fetchState({ singleStateAbbr: this.singleStateAbbr });
     getFavorites(this.props.user._id)

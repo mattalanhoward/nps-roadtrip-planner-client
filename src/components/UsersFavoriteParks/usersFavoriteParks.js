@@ -31,7 +31,7 @@ export default class usersFavoriteParks extends Component {
     usersFavoriteParks: [],
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     console.log(`Single State user`, this.props.user._id);
 
     getFavorites(this.props.user._id)
@@ -46,7 +46,7 @@ export default class usersFavoriteParks extends Component {
       .catch((err) => {
         console.log("Error updating favorites ", err);
       });
-  }
+  };
   render() {
     const { usersFavoriteParks } = this.state;
     const props = this.props;
@@ -67,6 +67,9 @@ export default class usersFavoriteParks extends Component {
             return (
               <ul key={park.id}>
                 <li>{`${park.fullName}`}</li>
+                <h5>{park.designation}</h5>
+                <h3>{park.fullName}</h3>
+                <p>{park.description}</p>
               </ul>
             );
           })
@@ -131,10 +134,10 @@ export default class usersFavoriteParks extends Component {
                     ></div>
                   </div>
                   <div className="photo-container">
-                    {/* <img
-              src={park.images[0].url}
-              alt={park.images[0].altText}
-            ></img> */}
+                    <img
+                      src={park.images[0].url}
+                      alt={park.images[0].altText}
+                    ></img>
                     <h5>More Photos</h5>
                   </div>
                   {/* <PhotoCarousel url={url} /> */}
