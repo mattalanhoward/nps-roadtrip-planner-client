@@ -64,6 +64,10 @@ export default class SinglePark extends Component {
   };
 
   handleFavorite = () => {
+    let favoriteMessage =
+      this.state.successMessage === "Added to favorites"
+        ? "Removed from favorites"
+        : "Added to favorites";
     this.setState({
       isFavorite: !this.state.isFavorite,
     });
@@ -74,7 +78,7 @@ export default class SinglePark extends Component {
           usersFavoriteParks: response.favoriteParks.map(
             (park) => park.parkCode
           ),
-          successMessage: "Successfully added to favorites",
+          successMessage: favoriteMessage,
         });
       })
       .catch((err) => {
