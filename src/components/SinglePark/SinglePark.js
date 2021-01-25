@@ -1,11 +1,7 @@
 import React, { Component } from "react";
-import PhotoCarousel from "../PhotoCarousel/PhotoCarousel";
 import SingleParkDetails from "../SingleParkDetails/SingleParkDetails";
 import "./SinglePark.css";
-import Carousel, { Dots } from "@brainhubeu/react-carousel";
-import "@brainhubeu/react-carousel/lib/style.css";
 import { Button, Popup } from "semantic-ui-react";
-import { withRouter } from "react-router-dom";
 import tent from "../../images/tent.svg";
 import caravan from "../../images/caravan.svg";
 import backpack from "../../images/backpack.svg";
@@ -13,7 +9,8 @@ import whitestar from "../../images/white-star.svg";
 import yellowstar from "../../images/yellow-star.svg";
 import truckbw from "../../images/roadtrip.svg";
 import truckcolor from "../../images/roadtripcolor.svg";
-import { addFavoritePark, getFavorites } from "../../services/npsService";
+import { addFavoritePark } from "../../services/npsService";
+import Slider from "infinite-react-carousel";
 
 const popupStyle = {
   borderRadius: 2,
@@ -45,8 +42,6 @@ export default class SinglePark extends Component {
       this.setState({
         usersFavoriteParks: parkCodesArr ? parkCodesArr : ["abcd"],
       });
-    } else {
-      console.log(`no user signed in`);
     }
   };
 
@@ -105,7 +100,6 @@ export default class SinglePark extends Component {
     const parkInfo = this.props.park;
     const props = this.props;
     const {
-      showCarousel,
       showParkDetails,
       singleParkDetails,
       isFavorite,
@@ -115,7 +109,22 @@ export default class SinglePark extends Component {
 
     const images = parkInfo.images;
 
-    const url = images.map((imageInfo) => imageInfo.url);
+    //array of url's
+    const carouselImages = images.map((imageInfo) => imageInfo);
+
+    const carousel = carouselImages.map((imageUrl) => (
+      <div className="photo-container">
+        <img src={imageUrl.url} alt={imageUrl.altText}></img>
+      </div>
+    ));
+
+    const settings = {
+      arrowsBlock: false,
+      className: "carousel-container",
+      dots: true,
+      shift: 50,
+      wheelScroll: 3,
+    };
 
     return (
       <div className="park-details-container">
@@ -217,14 +226,13 @@ export default class SinglePark extends Component {
               )}
             </div>
           </div>
-          <div className="photo-container">
-            <img
-              src={parkInfo.images[0].url}
-              alt={parkInfo.images[0].altText}
-            ></img>
-            <h5>More Photos</h5>
-          </div>
-          {/* <PhotoCarousel url={url} /> */}
+          <Slider {...settings}>
+            {carouselImages.length > 0 ? (
+              carousel
+            ) : (
+              <div className="no-images">No Images Available</div>
+            )}
+          </Slider>
         </section>
         <section className="single-park-details">
           {showParkDetails && (

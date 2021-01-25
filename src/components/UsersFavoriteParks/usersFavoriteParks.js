@@ -2,13 +2,10 @@ import React, { Component } from "react";
 import { getFavorites } from "../../services/npsService";
 import TopNav from "../TopNav/TopNav";
 import BottomNav from "../BottomNav/BottomNav";
-import PhotoCarousel from "../PhotoCarousel/PhotoCarousel";
 import SingleParkDetails from "../SingleParkDetails/SingleParkDetails";
 import "../SinglePark/SinglePark.css";
-import Carousel, { Dots } from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 import { Button, Popup } from "semantic-ui-react";
-import { withRouter } from "react-router-dom";
 import tent from "../../images/tent.svg";
 import caravan from "../../images/caravan.svg";
 import backpack from "../../images/backpack.svg";
@@ -140,7 +137,6 @@ export default class usersFavoriteParks extends Component {
                     ></img>
                     <h5>More Photos</h5>
                   </div>
-                  {/* <PhotoCarousel url={url} /> */}
                 </section>
 
                 <div className="bottom-border"></div>

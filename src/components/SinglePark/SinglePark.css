@@ -47,14 +47,27 @@
 }
 
 .photo-container {
-  margin: auto 0 auto 30px;
+  margin: auto 0 auto 0;
 }
 
 .photo-container img {
-  width: auto;
-  max-height: 200px;
+  width: 300px;
+  height: 300px;
+  max-height: 250px;
 }
 
+.carousel-container {
+  width: 300px;
+  height: 300px;
+}
+
+.no-images {
+  text-align: center;
+}
+
+.carousel-arrow {
+  color: black;
+}
 .activity-list {
   margin: 0;
 }
