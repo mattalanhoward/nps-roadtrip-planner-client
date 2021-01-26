@@ -30,26 +30,33 @@ export default class SinglePark extends Component {
     isOnRoadTrip: false,
     usersFavoriteParks: ["abcd"],
     successMessage: "",
+    loading: true,
   };
 
   componentDidMount = () => {
-    console.log(`single park user`, this.props.user);
     if (Object.keys(this.props.user).length > 0) {
       const parkCodesArr = this.props.user.favoriteParks.map(
         (park) => park.parkCode
       );
 
-      this.setState({
-        usersFavoriteParks: parkCodesArr ? parkCodesArr : ["abcd"],
-      });
+      this.setState(
+        {
+          loading: false,
+          isFavorite: parkCodesArr.includes(this.props.park.parkCode),
+          usersFavoriteParks: parkCodesArr ? parkCodesArr : ["abcd"],
+        },
+        () => {
+          console.log(this.state);
+        }
+      );
     }
   };
 
-  togglePhotos = () => {
-    this.setState({
-      showCarousel: !this.state.showCarousel,
-    });
-  };
+  // togglePhotos = () => {
+  //   this.setState({
+  //     showCarousel: !this.state.showCarousel,
+  //   });
+  // };
 
   toggleDetails = (target) => {
     this.setState({
@@ -59,10 +66,10 @@ export default class SinglePark extends Component {
   };
 
   handleFavorite = () => {
-    let favoriteMessage =
-      this.state.successMessage === "Added to favorites"
-        ? "Removed from favorites"
-        : "Added to favorites";
+    let favoriteMessage = this.state.isFavorite
+      ? "Successfully removed from favorites"
+      : "Successfully added to favorites";
+    setTimeout(() => this.setState({ successMessage: "" }), 3000);
     this.setState({
       isFavorite: !this.state.isFavorite,
     });
@@ -104,27 +111,24 @@ export default class SinglePark extends Component {
       singleParkDetails,
       isFavorite,
       isOnRoadTrip,
-      usersFavoriteParks,
+      loading,
     } = this.state;
 
-    const images = parkInfo.images;
+    const successStyle = isFavorite ? "add-fav" : "remove-fav";
 
-    //array of url's
-    const carouselImages = images.map((imageInfo) => imageInfo);
+    // const carousel = parkInfo.images.map((imageUrl) => (
+    //   <div className="photo-container">
+    //     <img src={imageUrl.url} alt={imageUrl.altText}></img>
+    //   </div>
+    // ));
 
-    const carousel = carouselImages.map((imageUrl) => (
-      <div className="photo-container">
-        <img src={imageUrl.url} alt={imageUrl.altText}></img>
-      </div>
-    ));
-
-    const settings = {
-      arrowsBlock: false,
-      className: "carousel-container",
-      dots: true,
-      shift: 50,
-      wheelScroll: 3,
-    };
+    // const settings = {
+    //   arrowsBlock: false,
+    //   className: "carousel-container",
+    //   dots: true,
+    //   shift: 50,
+    //   wheelScroll: 3,
+    // };
 
     return (
       <div className="park-details-container">
@@ -141,7 +145,7 @@ export default class SinglePark extends Component {
               <div className="favorite-icons">
                 <Popup
                   content={
-                    usersFavoriteParks.includes(parkInfo.parkCode) ? (
+                    isFavorite ? (
                       <p>Remove from Favorites</p>
                     ) : (
                       <p>Add to Favorites</p>
@@ -149,7 +153,7 @@ export default class SinglePark extends Component {
                   }
                   trigger={
                     <p onClick={this.handleFavorite}>
-                      {usersFavoriteParks.includes(parkInfo.parkCode) ? (
+                      {isFavorite ? (
                         <img src={yellowstar} alt={"yellowstar"}></img>
                       ) : (
                         <img src={whitestar} alt={"whitestar"}></img>
@@ -177,9 +181,11 @@ export default class SinglePark extends Component {
                   }
                   style={popupStyle}
                 />
+                <p class="success-message" id={successStyle}>
+                  {this.state.successMessage}
+                </p>
               </div>
             )}
-            <h1>{this.state.successMessage}</h1>
 
             <p>{parkInfo.description}</p>
             <p>
@@ -226,13 +232,23 @@ export default class SinglePark extends Component {
               )}
             </div>
           </div>
-          <Slider {...settings}>
-            {carouselImages.length > 0 ? (
+          {parkInfo.images.length > 0 ? (
+            <div className="photo-container">
+              <img
+                src={parkInfo.images[0].url}
+                alt={parkInfo.images[0].altText}
+              ></img>
+            </div>
+          ) : (
+            <div className="no-images">No Images Available</div>
+          )}
+          {/* <Slider {...settings}>
+            {carousel.length > 0 ? (
               carousel
             ) : (
               <div className="no-images">No Images Available</div>
             )}
-          </Slider>
+          </Slider> */}
         </section>
         <section className="single-park-details">
           {showParkDetails && (

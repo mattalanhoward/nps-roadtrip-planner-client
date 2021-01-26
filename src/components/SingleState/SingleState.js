@@ -46,8 +46,8 @@ export default class SingleState extends Component {
       this.setState({
         singleStateParks: response.data,
         loading: false,
-        lat: response.data[0].latitude,
-        lng: response.data[0].longitude,
+        // lat: response.data[0].latitude,
+        // lng: response.data[0].longitude,
       });
     } catch (error) {
       this.setState({
@@ -88,37 +88,4 @@ export default class SingleState extends Component {
       </div>
     );
   }
-}
-{
-  // createOptions = () => {
-  //   const singleStateParks = this.state.singleStateParks;
-  //   const parkOptionsArr = [];
-  //   singleStateParks.map((park) => {
-  //     parkOptionsArr.push({ value: park.fullName, label: park.fullName });
-  //   });
-  //   this.setState({
-  //     parkOptions: parkOptionsArr,
-  //   });
-  // };
-  // displayParkDetails = (selected) => {
-  //   const park = selected.target.value;
-  //   const filteredPark = this.state.singleStateParks.filter(
-  //     (x) => x.fullName == park
-  //   );
-  //   this.setState({
-  //     singleParkDetails: filteredPark[0],
-  //     toggleDetails: true,
-  //   });
-  // };
-  /* <div className="allParksList">
-  <Select
-    options={parkOptions}
-    placeholder={"Select a Park..."}
-    onChange={(val) => {
-      this.displayParkDetails({
-        target: { name: val.value, value: val.value },
-      });
-    }}
-  />
-</div> */
 }

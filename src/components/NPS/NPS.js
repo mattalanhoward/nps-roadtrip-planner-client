@@ -22,7 +22,6 @@ export class NPS extends Component {
 
   async componentDidMount() {
     this.getStateInfo();
-    // await this.fetchAllParks();
   }
 
   async fetchAllParks() {
@@ -54,8 +53,6 @@ export class NPS extends Component {
 
   render() {
     const { allParks, loading, stateAbbr, allStateInfo } = this.state;
-    // console.log(`NPS STATE`, this.state);
-    // console.log(`PROPS in the NPS`, this.props);
     const props = this.props;
 
     if (loading) {

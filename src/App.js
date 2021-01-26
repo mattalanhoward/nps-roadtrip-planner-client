@@ -37,7 +37,6 @@ class App extends React.Component {
   };
 
   handleLogout = () => {
-    // console.log(`Logout APP Clicked`);
     localStorage.clear();
     this.setState({
       authenticated: false,
