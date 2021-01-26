@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Link, Route } from "react-router-dom";
 import "./TopNav.css";
+import logo from "../../images/roadtripcolor.svg";
 
 export default class TopNav extends Component {
   render() {
@@ -9,14 +10,17 @@ export default class TopNav extends Component {
     return (
       <div className="top-nav-container">
         <div className="logo-title">
-          <p>Logo</p>
+          <img src={logo} alt={"Color Truck"}></img>
           <h3>National Park Road Trip Planner</h3>
         </div>
         <div className="links">
           <Link to="/">Home</Link>
           {props.authenticated && <Link to="/favorites">Favorites</Link>}
 
-          {!props.authenticated && <Link to="/user/login">Login</Link>}
+          {/* {!props.authenticated && <Link to="/user/login">Login</Link>} */}
+          {!props.authenticated && (
+            <p onClick={this.props.toggleLoginPopup}>Login</p>
+          )}
           {!props.authenticated && <Link to="/user/signup">Signup</Link>}
           {props.authenticated && (
             <Link to={"/"} onClick={props.logout()}>

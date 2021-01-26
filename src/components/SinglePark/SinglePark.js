@@ -69,7 +69,7 @@ export default class SinglePark extends Component {
     let favoriteMessage = this.state.isFavorite
       ? "Successfully removed from favorites"
       : "Successfully added to favorites";
-    setTimeout(() => this.setState({ successMessage: "" }), 3000);
+    setTimeout(() => this.setState({ successMessage: "" }), 2000);
     this.setState({
       isFavorite: !this.state.isFavorite,
     });
@@ -181,7 +181,7 @@ export default class SinglePark extends Component {
                   }
                   style={popupStyle}
                 />
-                <p class="success-message" id={successStyle}>
+                <p className="success-message" id={successStyle}>
                   {this.state.successMessage}
                 </p>
               </div>

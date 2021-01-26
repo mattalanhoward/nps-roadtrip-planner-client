@@ -1,8 +1,5 @@
-//Hold in state list of all NPS.
-//Drop down to search by state.
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-// import { getAllParks } from "../../services/npsService";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import TopNav from "../TopNav/TopNav";
 import "./NPS.css";
 import USVectorMap from "../USVectorMap/USVectorMap";
@@ -10,6 +7,7 @@ import BottomNav from "../BottomNav/BottomNav";
 import highSierraTent from "../../images/high-sierra-tent.jpeg";
 import stateData from "../../stateList.json";
 import { getAllParks } from "../../services/npsService";
+import Login from "../Login/Login";
 
 export class NPS extends Component {
   state = {
@@ -18,6 +16,7 @@ export class NPS extends Component {
     errorMessage: "",
     stateAbbr: "co",
     allStateInfo: [],
+    showLogin: false,
   };
 
   async componentDidMount() {
@@ -51,8 +50,23 @@ export class NPS extends Component {
     this.setState({ stateAbbr: event.target.value }, () => {});
   };
 
+  toggleLoginPopup = () => {
+    console.log(`toggle popup`);
+    const showLogin = this.state.showLogin;
+
+    this.setState({
+      showLogin: !showLogin,
+    });
+  };
+
   render() {
-    const { allParks, loading, stateAbbr, allStateInfo } = this.state;
+    const {
+      allParks,
+      loading,
+      stateAbbr,
+      allStateInfo,
+      showLogin,
+    } = this.state;
     const props = this.props;
 
     if (loading) {
@@ -60,8 +74,21 @@ export class NPS extends Component {
     } else {
       return (
         <div>
-          <TopNav logout={props.logout} authenticated={props.authenticated} />
+          <TopNav
+            logout={props.logout}
+            authenticated={props.authenticated}
+            toggleLoginPopup={this.toggleLoginPopup}
+          />
           <section className="nps-landing-container">
+            {showLogin && (
+              <div id="login-popup">
+                <Login
+                  authenticated={this.props.authenticated}
+                  authenticate={this.props.authenticate}
+                  toggleLoginPopup={this.toggleLoginPopup}
+                ></Login>
+              </div>
+            )}
             <div className="nps-input-container">
               <h1>Find Your Next Park</h1>
               <form>

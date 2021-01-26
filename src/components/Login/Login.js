@@ -19,6 +19,7 @@ class Login extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    this.props.toggleLoginPopup();
     login({
       username: this.state.userName,
       email: this.state.email,
@@ -27,8 +28,7 @@ class Login extends React.Component {
       .then((response) =>
         response.accessToken
           ? (localStorage.setItem("accessToken", response.accessToken),
-            this.props.authenticate(response.user),
-            this.props.history.push("/"))
+            this.props.authenticate(response.user))
           : this.setState({
               errorMessage: response.errorMessage,
             })
@@ -42,14 +42,6 @@ class Login extends React.Component {
     const { email, password, errorMessage } = this.state;
     return (
       <div className="login-container">
-        {/* <img
-          className="logo"
-          src={
-            "https://res.cloudinary.com/dcod1zxnl/image/upload/v1603130425/Noda_101_Logo_l72snm.png"
-          }
-          alt="NPS Planner Logo"
-        /> */}
-
         {errorMessage !== "" && (
           <div className="signup-errors">{errorMessage}</div>
         )}

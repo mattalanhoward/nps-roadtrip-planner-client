@@ -55,6 +55,7 @@ class App extends React.Component {
               path="/"
               user={this.state.user}
               authenticated={authenticated}
+              authenticate={this.authenticate}
               component={NPS}
               logout={() => this.handleLogout}
             />
