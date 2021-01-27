@@ -27,6 +27,7 @@ const popupStyle = {
 export default class usersFavoriteParks extends Component {
   state = {
     usersFavoriteParks: [],
+    loading: true,
   };
 
   componentDidMount = () => {
@@ -37,6 +38,7 @@ export default class usersFavoriteParks extends Component {
         this.setState(
           {
             usersFavoriteParks: response.favoriteParks,
+            loading: false,
           },
           () => console.log(`Users favorites inside favorites `, this.state)
         );
@@ -46,11 +48,13 @@ export default class usersFavoriteParks extends Component {
       });
   };
   render() {
-    const { usersFavoriteParks } = this.state;
+    const { usersFavoriteParks, loading } = this.state;
     const props = this.props;
 
     console.log(`favorites component`, usersFavoriteParks);
-    return (
+    return loading ? (
+      <h1>Loading...</h1>
+    ) : (
       <div className="favorites">
         <TopNav
           logout={this.props.logout}
