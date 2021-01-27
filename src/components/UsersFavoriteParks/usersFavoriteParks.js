@@ -13,6 +13,7 @@ import whitestar from "../../images/white-star.svg";
 import yellowstar from "../../images/yellow-star.svg";
 import truckbw from "../../images/roadtrip.svg";
 import truckcolor from "../../images/roadtripcolor.svg";
+import "./usersFavoriteParks.css";
 
 const popupStyle = {
   borderRadius: 2,
@@ -50,12 +51,12 @@ export default class usersFavoriteParks extends Component {
 
     console.log(`favorites component`, usersFavoriteParks);
     return (
-      <div>
+      <div className="favorites">
         <TopNav
           logout={this.props.logout}
           authenticated={this.props.authenticated}
         />
-        {}
+
         <h1>Favorites</h1>
         {/* {usersFavoriteParks.length === 0 ? (
           <h2>You have no favorites at this time. Start searching!</h2>
@@ -135,7 +136,7 @@ export default class usersFavoriteParks extends Component {
                       src={park.images[0].url}
                       alt={park.images[0].altText}
                     ></img>
-                    <h5>More Photos</h5>
+                    {/* <h5>More Photos</h5> */}
                   </div>
                 </section>
 

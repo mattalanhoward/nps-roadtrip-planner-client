@@ -20,6 +20,7 @@ class Signup extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    this.props.toggleSignupPopup();
     signup({
       userName: this.state.userName,
       email: this.state.email,
@@ -29,8 +30,7 @@ class Signup extends React.Component {
         response.accessToken
           ? (localStorage.setItem("accessToken", response.accessToken),
             (localStorage.setItem("apiToken", response.apiToken),
-            this.props.authenticate(response.user),
-            this.props.history.push("/")))
+            this.props.authenticate(response.user)))
           : this.setState({
               errorMessage: response.errorMessage,
             })
@@ -43,16 +43,10 @@ class Signup extends React.Component {
 
     return (
       <div className="signup-container">
-        {/* <img
-          className="logo"
-          src={
-            "https://res.cloudinary.com/dcod1zxnl/image/upload/v1603130425/Noda_101_Logo_l72snm.png"
-          }
-          alt="NPS Logo"
-        /> */}
         {errorMessage !== "" && (
           <span className="signup-errors">{errorMessage}</span>
         )}
+        <h4>Please Signup</h4>
         <form onSubmit={this.handleSubmit}>
           <input
             name="userName"

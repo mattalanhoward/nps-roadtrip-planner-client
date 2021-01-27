@@ -9,6 +9,8 @@ import "./SingleState.css";
 import Select from "react-select";
 import { getFavorites } from "../../services/npsService";
 import usersFavoriteParks from "../UsersFavoriteParks/usersFavoriteParks";
+import Login from "../Login/Login";
+import Signup from "../Signup/Signup";
 
 export default class SingleState extends Component {
   state = {
@@ -17,6 +19,8 @@ export default class SingleState extends Component {
     lat: null,
     lng: null,
     usersFavoriteParks: [],
+    showLogin: false,
+    showSignup: false,
   };
 
   singleStateAbbr = this.props.match.params.details;
@@ -56,16 +60,63 @@ export default class SingleState extends Component {
     }
   }
 
+  toggleLoginPopup = () => {
+    const showLogin = this.state.showLogin;
+
+    this.setState({
+      showLogin: !showLogin,
+      showSignup: false,
+    });
+  };
+
+  toggleSignupPopup = () => {
+    const showSignup = this.state.showSignup;
+
+    this.setState({
+      showSignup: !showSignup,
+      showLogin: false,
+    });
+  };
+
   render() {
-    const { singleStateParks, usersFavoriteParks } = this.state;
+    const {
+      singleStateParks,
+      usersFavoriteParks,
+      showLogin,
+      showSignup,
+    } = this.state;
     // console.log(`Props in Single State`, this.props);
     const props = this.props;
     return (
       <div>
         <TopNav
-          logout={this.props.logout}
+          logout={props.logout}
           authenticated={props.authenticated}
+          toggleLoginPopup={this.toggleLoginPopup}
+          toggleSignupPopup={this.toggleSignupPopup}
         />
+        <div className="login-popup-container">
+          {showLogin && (
+            <div id="login-popup">
+              <Login
+                authenticated={props.authenticated}
+                authenticate={props.authenticate}
+                toggleLoginPopup={this.toggleLoginPopup}
+                toggleSignupPopup={this.toggleSignupPopup}
+              ></Login>
+            </div>
+          )}
+          {showSignup && (
+            <div id="signup-popup">
+              <Signup
+                authenticated={props.authenticated}
+                authenticate={props.authenticate}
+                toggleSignupPopup={this.toggleSignupPopup}
+                toggleLoginPopup={this.toggleLoginPopup}
+              ></Signup>
+            </div>
+          )}
+        </div>
         <h1>{this.singleStateAbbr.toUpperCase()}</h1>
         <section className="state-park-container">
           <StateMap singleStateParks={singleStateParks} />

@@ -1,0 +1,28 @@
+.signup-container {
+  width: 300px;
+  height: 200px;
+  margin: auto 0 auto -150px;
+  position: absolute;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 3px;
+}
+
+.signup-container form {
+  /* border: 1px solid red; */
+  width: 80%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.signup-container input,
+.signup-container button,
+.signup-container h4 {
+  /* border: 2px solid blue; */
+  margin: 5px auto;
+}

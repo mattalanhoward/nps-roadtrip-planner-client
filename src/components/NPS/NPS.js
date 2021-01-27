@@ -8,6 +8,7 @@ import highSierraTent from "../../images/high-sierra-tent.jpeg";
 import stateData from "../../stateList.json";
 import { getAllParks } from "../../services/npsService";
 import Login from "../Login/Login";
+import Signup from "../Signup/Signup";
 
 export class NPS extends Component {
   state = {
@@ -17,6 +18,7 @@ export class NPS extends Component {
     stateAbbr: "co",
     allStateInfo: [],
     showLogin: false,
+    showSignup: false,
   };
 
   async componentDidMount() {
@@ -51,11 +53,20 @@ export class NPS extends Component {
   };
 
   toggleLoginPopup = () => {
-    console.log(`toggle popup`);
     const showLogin = this.state.showLogin;
 
     this.setState({
       showLogin: !showLogin,
+      showSignup: false,
+    });
+  };
+
+  toggleSignupPopup = () => {
+    const showSignup = this.state.showSignup;
+
+    this.setState({
+      showSignup: !showSignup,
+      showLogin: false,
     });
   };
 
@@ -66,6 +77,7 @@ export class NPS extends Component {
       stateAbbr,
       allStateInfo,
       showLogin,
+      showSignup,
     } = this.state;
     const props = this.props;
 
@@ -78,15 +90,27 @@ export class NPS extends Component {
             logout={props.logout}
             authenticated={props.authenticated}
             toggleLoginPopup={this.toggleLoginPopup}
+            toggleSignupPopup={this.toggleSignupPopup}
           />
           <section className="nps-landing-container">
             {showLogin && (
               <div id="login-popup">
                 <Login
-                  authenticated={this.props.authenticated}
-                  authenticate={this.props.authenticate}
+                  authenticated={props.authenticated}
+                  authenticate={props.authenticate}
                   toggleLoginPopup={this.toggleLoginPopup}
+                  toggleSignupPopup={this.toggleSignupPopup}
                 ></Login>
+              </div>
+            )}
+            {showSignup && (
+              <div id="signup-popup">
+                <Signup
+                  authenticated={props.authenticated}
+                  authenticate={props.authenticate}
+                  toggleSignupPopup={this.toggleSignupPopup}
+                  toggleLoginPopup={this.toggleLoginPopup}
+                ></Signup>
               </div>
             )}
             <div className="nps-input-container">
@@ -122,7 +146,7 @@ export default NPS;
 }
 {
   /* <ul>
-            <div className="allParksList">
+            <div className="allParksList`>
               <ul>
                 {allParks.map((park) => (
                   <li key={park.id}>{park.fullName}</li>

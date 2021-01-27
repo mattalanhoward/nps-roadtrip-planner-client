@@ -16,12 +16,12 @@ export default class TopNav extends Component {
         <div className="links">
           <Link to="/">Home</Link>
           {props.authenticated && <Link to="/favorites">Favorites</Link>}
-
-          {/* {!props.authenticated && <Link to="/user/login">Login</Link>} */}
           {!props.authenticated && (
             <p onClick={this.props.toggleLoginPopup}>Login</p>
           )}
-          {!props.authenticated && <Link to="/user/signup">Signup</Link>}
+          {!props.authenticated && (
+            <p onClick={this.props.toggleSignupPopup}>Signup</p>
+          )}
           {props.authenticated && (
             <Link to={"/"} onClick={props.logout()}>
               Logout

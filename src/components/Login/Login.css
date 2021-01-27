@@ -1,10 +1,28 @@
 .login-container {
-  width: 200px;
+  width: 300px;
   height: 200px;
-  margin: auto 0 auto -100px;
+  margin: auto 0 auto -150px;
   position: absolute;
   background-color: white;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
+  border-radius: 3px;
+}
+
+.login-container form {
+  /* border: 1px solid red; */
+  width: 80%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-container input,
+.login-container button,
+.login-container h4 {
+  /* border: 2px solid blue; */
+  margin: 5px auto;
 }
