@@ -3,12 +3,13 @@
   height: 200px;
   margin: auto 0 auto -150px;
   position: absolute;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.87);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   border-radius: 3px;
+  border: 1px solid grey;
 }
 
 .login-container form {

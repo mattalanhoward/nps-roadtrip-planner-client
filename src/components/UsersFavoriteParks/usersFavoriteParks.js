@@ -61,7 +61,7 @@ export default class usersFavoriteParks extends Component {
           authenticated={this.props.authenticated}
         />
 
-        <h1>Favorites</h1>
+        <h2>Favorites</h2>
         {/* {usersFavoriteParks.length === 0 ? (
           <h2>You have no favorites at this time. Start searching!</h2>
         ) : (

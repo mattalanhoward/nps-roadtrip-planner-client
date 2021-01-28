@@ -38,9 +38,9 @@ export default class StateMap extends Component {
   setViewPort = () => {
     this.setState({
       viewport: {
-        latitude: 37.0902,
+        latitude: 39.5902,
         longitude: -95.7129,
-        zoom: 4,
+        zoom: 2.9,
       },
     });
   };
@@ -110,7 +110,6 @@ export default class StateMap extends Component {
               className="park-popup"
               latitude={parseFloat(popUpPark.latitude)}
               longitude={parseFloat(popUpPark.longitude)}
-              onClose={this.handleClosePopup}
               closeOnClick={false}
               offsetTop={-10}
             >

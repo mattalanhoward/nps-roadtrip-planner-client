@@ -69,8 +69,6 @@ class Login extends React.Component {
             Login{" "}
           </button>
         </form>
-
-        <Link to={"/user/signup"}>Click here to Signup</Link>
       </div>
     );
   }
