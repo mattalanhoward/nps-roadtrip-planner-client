@@ -1,0 +1,11 @@
+#add-to-road-trip {
+  border: 3px solid red;
+  background-color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 20%;
+  margin-left: -25%;
+  margin-top: -10%;
+}

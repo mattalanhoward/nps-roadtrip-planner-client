@@ -10,7 +10,7 @@ import yellowstar from "../../images/yellow-star.svg";
 import truckbw from "../../images/roadtrip.svg";
 import truckcolor from "../../images/roadtripcolor.svg";
 import { addFavoritePark } from "../../services/npsService";
-import Slider from "infinite-react-carousel";
+import AddToRoadTrip from "../AddToRoadTrip/AddToRoadTrip";
 
 const popupStyle = {
   borderRadius: 2,
@@ -31,6 +31,7 @@ export default class SinglePark extends Component {
     usersFavoriteParks: ["abcd"],
     successMessage: "",
     loading: true,
+    roadTripPopup: false,
   };
 
   componentDidMount = () => {
@@ -88,19 +89,13 @@ export default class SinglePark extends Component {
       });
   };
 
-  handleRoadTrip = () => {
-    this.state.isOnRoadTrip ? this.removeFromTrip() : this.addToTrip();
+  toggleRoadTripPopup = () => {
+    console.log(`Road trip popup`);
+
     this.setState({
+      roadTripPopup: !this.state.roadTripPopup,
       isOnRoadTrip: !this.state.isOnRoadTrip,
     });
-  };
-
-  addToTrip = () => {
-    console.log(`Add To Trip`);
-  };
-
-  removeFromTrip = () => {
-    console.log(`Remove From Trip`);
   };
 
   render() {
@@ -112,6 +107,7 @@ export default class SinglePark extends Component {
       isFavorite,
       isOnRoadTrip,
       loading,
+      roadTripPopup,
     } = this.state;
 
     const successStyle = isFavorite ? "add-fav" : "remove-fav";
@@ -141,6 +137,7 @@ export default class SinglePark extends Component {
                 ? `Various States: ${parkInfo.states}`
                 : `State: ${parkInfo.states}`}
             </p>
+
             {props.authenticated && (
               <div className="favorite-icons">
                 <Popup
@@ -171,7 +168,7 @@ export default class SinglePark extends Component {
                     )
                   }
                   trigger={
-                    <p onClick={this.handleRoadTrip}>
+                    <p onClick={this.toggleRoadTripPopup}>
                       {isOnRoadTrip ? (
                         <img src={truckcolor} alt={"Color Truck"}></img>
                       ) : (
@@ -185,6 +182,15 @@ export default class SinglePark extends Component {
                   {this.state.successMessage}
                 </p>
               </div>
+            )}
+
+            {roadTripPopup && (
+              <AddToRoadTrip
+                toggleRoadTripPopup={this.toggleRoadTripPopup}
+                authenticated={props.authenticated}
+                user={props.user}
+                park={parkInfo}
+              ></AddToRoadTrip>
             )}
 
             <p>{parkInfo.description}</p>

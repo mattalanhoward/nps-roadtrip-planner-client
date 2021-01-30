@@ -95,7 +95,10 @@ export default class SingleState extends Component {
           toggleLoginPopup={this.toggleLoginPopup}
           toggleSignupPopup={this.toggleSignupPopup}
         />
-        <div className="login-popup-container">
+
+        <h1>{this.singleStateAbbr.toUpperCase()}</h1>
+
+        <section className="state-park-container">
           {showLogin && (
             <div id="login-popup">
               <Login
@@ -116,9 +119,6 @@ export default class SingleState extends Component {
               ></Signup>
             </div>
           )}
-        </div>
-        <h1>{this.singleStateAbbr.toUpperCase()}</h1>
-        <section className="state-park-container">
           <StateMap singleStateParks={singleStateParks} />
           <div className="single-park-container">
             {singleStateParks.map((park) => {
