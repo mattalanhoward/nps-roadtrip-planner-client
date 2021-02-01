@@ -6,12 +6,6 @@ const service = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
 });
 
-// // const API_KEY = process.env.REACT_APP_NPS_API_KEY;
-// const service = axios.create({
-//   baseURL: "https://developer.nps.gov/api/v1/",
-//   headers: { "X-Api-Key": API_KEY },
-// });
-
 //total parks is 497
 //Making the call on the frontend to the NPS API
 export const getAllParks = () => {
@@ -49,4 +43,14 @@ export const addFavoritePark = (park, userId) => {
     .post("/park/favorites", { park, userId })
     .then((response) => response.data)
     .catch((error) => (`Error Adding Favorite`, error));
+};
+
+//Add to RoadTrip
+export const addParkToRoadTrip = (parkId, userId, tripName) => {
+  console.log(`Lets go to the backend NOW`);
+
+  return service
+    .post("/park/addToRoadTrip", { parkId, userId, tripName })
+    .then((response) => response.data)
+    .catch((error) => (`Error adding park to road trip`, error));
 };

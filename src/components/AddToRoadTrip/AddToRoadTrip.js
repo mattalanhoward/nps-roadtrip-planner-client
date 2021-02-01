@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./AddToRoadTrip.css";
+import { addParkToRoadTrip } from "../../services/npsService";
 
 export default class AddToRoadTrip extends Component {
   state = {
@@ -15,7 +16,7 @@ export default class AddToRoadTrip extends Component {
   };
 
   handleDropdownChange = (event) => {
-    const { name, value } = event.target;
+    const { value } = event.target;
     this.setState({
       existingTripName: value,
     });
@@ -23,11 +24,9 @@ export default class AddToRoadTrip extends Component {
 
   addToNewTrip = () => {
     console.log(`Add to NEW trip... ${this.state.newRoadTripName}`);
-    this.addParkToTrip(
-      this.props.park,
-      this.props.user,
-      this.state.newRoadTripName
-    );
+    const tripName = this.state.newRoadTripName;
+
+    this.addParkToTrip(this.props.park.id, this.props.user._id, tripName);
     this.props.toggleRoadTripPopup();
     this.setState({
       newRoadTripName: "",
@@ -36,11 +35,8 @@ export default class AddToRoadTrip extends Component {
 
   addToExistingTrip = () => {
     console.log(`Add to existing trip`, this.state.existingTripName);
-    this.addParkToTrip(
-      this.props.park,
-      this.props.user,
-      this.state.existingTripName
-    );
+    const tripName = this.state.existingTripName;
+    this.addParkToTrip(this.props.park.id, this.props.user._id, tripName);
     this.props.toggleRoadTripPopup();
 
     this.setState({
@@ -48,8 +44,13 @@ export default class AddToRoadTrip extends Component {
     });
   };
 
-  addParkToTrip = (park, user, trip) => {
-    console.log(`Send to backend`, park, user, trip);
+  addParkToTrip = (parkId, userId, tripName) => {
+    console.log(`Send to backend`, parkId, userId, tripName);
+    addParkToRoadTrip(parkId, userId, tripName)
+      .then((response) => console.log(`RESPONSE `, response.userRoadTrips))
+      .catch((error) => {
+        console.log("Error updating Road Trip ", error);
+      });
   };
 
   render() {
@@ -101,29 +102,4 @@ export default class AddToRoadTrip extends Component {
       </section>
     );
   }
-}
-
-{
-  /* <form onSubmit={this.handleSubmit}>
-          <input
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-            required={true}
-            type="email"
-            placeholder="Email"
-          />
-          <input
-            name="password"
-            type="password"
-            value={password}
-            onChange={this.handleChange}
-            required={true}
-            placeholder="Password"
-          />
-          <button className="nav-btns" type="submit">
-            {" "}
-            Login{" "}
-          </button>
-        </form> */
 }

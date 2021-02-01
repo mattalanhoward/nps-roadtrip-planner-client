@@ -90,8 +90,6 @@ export default class SinglePark extends Component {
   };
 
   toggleRoadTripPopup = () => {
-    console.log(`Road trip popup`);
-
     this.setState({
       roadTripPopup: !this.state.roadTripPopup,
       isOnRoadTrip: !this.state.isOnRoadTrip,
