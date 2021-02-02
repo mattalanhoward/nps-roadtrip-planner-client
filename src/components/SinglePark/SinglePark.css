@@ -4,22 +4,15 @@
 
 .park-container {
   /* border: 2px solid red; */
-  width: 80%;
   text-align: left;
   margin: 20px auto;
   padding: 10px 0px 20px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* -webkit-box-shadow: 0px 10px 13px -7px #000000,
+  /* /* -webkit-box-shadow: 0px 10px 13px -7px #000000,
     5px 5px 15px 5px rgba(0, 0, 0, 0);
   box-shadow: 0px 20px 23px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0); */
-}
-
-.bottom-border {
-  width: 60%;
-  margin: 0 auto;
-  border-bottom: 1px solid black;
 }
 
 .park-info {
@@ -54,6 +47,12 @@
   width: 300px;
   height: 300px;
   max-height: 250px;
+}
+
+.bottom-border {
+  width: 60%;
+  margin: 0 auto;
+  border-bottom: 1px solid black;
 }
 
 .carousel-container {
@@ -101,12 +100,46 @@
   background-color: #ff4444;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+/* Extra Small devices 599px and down) */
+@media only screen and (max-width: 599px) {
+  .park-container {
+    /* border: 2px solid red; */
+    width: 100%;
+    margin: 15px 0;
+    padding: 0;
+    flex-direction: column-reverse;
+    /* align-items: center; */
+    /* /* -webkit-box-shadow: 0px 10px 13px -7px #000000,
+      5px 5px 15px 5px rgba(0, 0, 0, 0);
+    box-shadow: 0px 20px 23px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0); */
+  }
+
+  .park-info {
+    /* border: 2px solid blue; */
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .more-details {
+    text-align: center;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+  .park-container {
+    /* border: 2px solid red; */
+    width: 100%;
+    margin: 10px 0;
+    padding: 0;
+    align-items: center;
+  }
+
+  .park-info {
+    /* border: 2px solid blue; */
+    width: 100%;
+    margin-right: 10px;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -115,6 +148,23 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+  .park-details-container {
+    margin: 20px auto;
+    padding: 10px;
+    box-shadow: 0px 5px 5px -2px #000000, 5px 5px 5px 5px rgba(0, 0, 0, 0);
+  }
+
+  .park-container {
+    /* border: 2px solid red; */
+    width: 80%;
+    margin: 20px auto;
+  }
+
+  .bottom-border {
+    width: 60%;
+    margin: 0 auto;
+    border-bottom: 0px solid black;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */

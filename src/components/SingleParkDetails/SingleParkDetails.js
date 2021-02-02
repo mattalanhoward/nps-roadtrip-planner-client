@@ -20,7 +20,7 @@ export default function SingleParkDetails(props) {
   };
 
   return (
-    <div>
+    <section className="single-park-details">
       <div className="details-item-container">
         <h5>Physical Address</h5>
         <p className="address">
@@ -63,6 +63,6 @@ export default function SingleParkDetails(props) {
         </div>
       </div>
       {<h5 onClick={() => handleCloseDetails()}>Show Less</h5>}
-    </div>
+    </section>
   );
 }

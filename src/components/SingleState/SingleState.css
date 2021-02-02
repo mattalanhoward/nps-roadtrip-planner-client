@@ -16,8 +16,8 @@
   margin: 30px auto;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+/* Extra Small devices 599px and down) */
+@media only screen and (max-width: 599px) {
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */

@@ -6,11 +6,10 @@ import SinglePark from "../SinglePark/SinglePark";
 import mapboxgl from "mapbox-gl";
 import StateMap from "../StateMap/StateMap";
 import "./SingleState.css";
-import Select from "react-select";
 import { getFavorites } from "../../services/npsService";
-import usersFavoriteParks from "../UsersFavoriteParks/usersFavoriteParks";
 import Login from "../Login/Login";
 import Signup from "../Signup/Signup";
+import stateData from "../../stateList.json";
 
 export default class SingleState extends Component {
   state = {
@@ -21,13 +20,14 @@ export default class SingleState extends Component {
     usersFavoriteParks: [],
     showLogin: false,
     showSignup: false,
+    stateName: "",
   };
 
   singleStateAbbr = this.props.match.params.details;
 
   componentDidMount() {
     console.log(`Single State user`, this.props.user._id);
-
+    this.getStateName();
     this.fetchState({ singleStateAbbr: this.singleStateAbbr });
     getFavorites(this.props.user._id)
       .then((response) => {
@@ -60,6 +60,16 @@ export default class SingleState extends Component {
     }
   }
 
+  getStateName = () => {
+    const stateName = stateData.filter((state) => {
+      return state.abbreviation === this.singleStateAbbr.toUpperCase();
+    });
+    console.log(`State name`, stateName[0].name);
+    this.setState({
+      stateName: stateName[0].name,
+    });
+  };
+
   toggleLoginPopup = () => {
     const showLogin = this.state.showLogin;
 
@@ -84,6 +94,7 @@ export default class SingleState extends Component {
       usersFavoriteParks,
       showLogin,
       showSignup,
+      stateName,
     } = this.state;
     // console.log(`Props in Single State`, this.props);
     const props = this.props;
@@ -96,7 +107,7 @@ export default class SingleState extends Component {
           toggleSignupPopup={this.toggleSignupPopup}
         />
 
-        <h1>{this.singleStateAbbr.toUpperCase()}</h1>
+        <h1>{stateName}</h1>
 
         <section className="state-park-container">
           {showLogin && (

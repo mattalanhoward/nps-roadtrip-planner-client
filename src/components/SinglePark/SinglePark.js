@@ -223,6 +223,7 @@ export default class SinglePark extends Component {
               />
             </p>
             <div
+              className="more-details"
               onClick={() =>
                 this.toggleDetails({
                   target: { name: parkInfo },
@@ -254,14 +255,14 @@ export default class SinglePark extends Component {
             )}
           </Slider> */}
         </section>
-        <section className="single-park-details">
-          {showParkDetails && (
-            <SingleParkDetails
-              singleParkDetails={singleParkDetails}
-              toggleDetails={this.toggleDetails}
-            />
-          )}
-        </section>
+
+        {showParkDetails && (
+          <SingleParkDetails
+            singleParkDetails={singleParkDetails}
+            toggleDetails={this.toggleDetails}
+          />
+        )}
+
         <div className="bottom-border"></div>
       </div>
     );
