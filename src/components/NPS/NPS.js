@@ -113,6 +113,7 @@ export class NPS extends Component {
                 ></Signup>
               </div>
             )}
+            <h1 className="title">National Park Road Trip Planner</h1>
             <div className="nps-input-container">
               <h1>Find Your Next Park</h1>
               <form>

@@ -1,11 +1,12 @@
 .state-park-container {
   /* border: 2px solid red; */
   min-height: 75vh;
-  width: 90%;
-  margin: 10px auto 0 auto;
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgb(238, 236, 236);
 }
 
 .single-park-container {
@@ -14,6 +15,15 @@
   flex-direction: column;
   align-items: center;
   margin: 30px auto;
+}
+
+.stateName {
+  background-color: #908e7d;
+}
+
+.stateName h1 {
+  margin: 0;
+  padding: 25px;
 }
 
 /* Extra Small devices 599px and down) */

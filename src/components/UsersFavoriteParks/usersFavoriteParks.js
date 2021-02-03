@@ -14,6 +14,8 @@ import yellowstar from "../../images/yellow-star.svg";
 import truckbw from "../../images/roadtrip.svg";
 import truckcolor from "../../images/roadtripcolor.svg";
 import "./usersFavoriteParks.css";
+import { css } from "@emotion/core";
+import PacmanLoader from "react-spinners/ClipLoader";
 
 const popupStyle = {
   borderRadius: 2,
@@ -53,7 +55,9 @@ export default class usersFavoriteParks extends Component {
 
     console.log(`favorites component`, usersFavoriteParks);
     return loading ? (
-      <h1>Loading...</h1>
+      <div className="loader">
+        <PacmanLoader loading={loading} size={150} />
+      </div>
     ) : (
       <div className="favorites">
         <TopNav

@@ -11,7 +11,7 @@ export default class TopNav extends Component {
       <div className="top-nav-container">
         <div className="logo-title">
           <img src={logo} alt={"Color Truck"}></img>
-          <h3>National Park Road Trip Planner</h3>
+          {/* <h3>National Park Road Trip Planner</h3> */}
         </div>
         <div className="links">
           <Link to="/">Home</Link>

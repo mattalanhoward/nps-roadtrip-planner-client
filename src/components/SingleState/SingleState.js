@@ -106,9 +106,9 @@ export default class SingleState extends Component {
           toggleLoginPopup={this.toggleLoginPopup}
           toggleSignupPopup={this.toggleSignupPopup}
         />
-
-        <h1>{stateName}</h1>
-
+        <div className="stateName">
+          <h1>{stateName}</h1>
+        </div>
         <section className="state-park-container">
           {showLogin && (
             <div id="login-popup">
