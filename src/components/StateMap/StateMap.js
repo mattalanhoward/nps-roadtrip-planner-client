@@ -31,9 +31,7 @@ export default class StateMap extends Component {
     await this.setViewPort();
   };
 
-  componentDidMount = () => {
-    console.log(`I mounted!`);
-  };
+  componentDidMount = () => {};
 
   setViewPort = () => {
     this.setState({

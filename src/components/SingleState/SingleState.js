@@ -26,17 +26,13 @@ export default class SingleState extends Component {
   singleStateAbbr = this.props.match.params.details;
 
   componentDidMount() {
-    console.log(`Single State user`, this.props.user._id);
     this.getStateName();
     this.fetchState({ singleStateAbbr: this.singleStateAbbr });
     getFavorites(this.props.user._id)
       .then((response) => {
-        this.setState(
-          {
-            usersFavoriteParks: response.favoriteParks,
-          }
-          // () => console.log(`Users favorites `, this.state)
-        );
+        this.setState({
+          usersFavoriteParks: response.favoriteParks,
+        });
       })
       .catch((err) => {
         console.log("Error updating favorites ", err);
@@ -46,12 +42,9 @@ export default class SingleState extends Component {
   async fetchState({ singleStateAbbr }) {
     try {
       const response = await getAllParksByState({ singleStateAbbr });
-      console.log(`BACKEND RESPONSE`, response.data);
       this.setState({
         singleStateParks: response.data,
         loading: false,
-        // lat: response.data[0].latitude,
-        // lng: response.data[0].longitude,
       });
     } catch (error) {
       this.setState({
@@ -64,7 +57,6 @@ export default class SingleState extends Component {
     const stateName = stateData.filter((state) => {
       return state.abbreviation === this.singleStateAbbr.toUpperCase();
     });
-    console.log(`State name`, stateName[0].name);
     this.setState({
       stateName: stateName[0].name,
     });
@@ -96,7 +88,6 @@ export default class SingleState extends Component {
       showSignup,
       stateName,
     } = this.state;
-    // console.log(`Props in Single State`, this.props);
     const props = this.props;
     return (
       <div>

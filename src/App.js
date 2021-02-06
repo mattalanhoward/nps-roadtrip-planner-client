@@ -22,7 +22,6 @@ class App extends React.Component {
     if (accessToken) {
       validateSession(accessToken)
         .then((response) => {
-          console.log(response, "RESPONSE");
           this.authenticate(response.session.userId);
         })
         .catch((err) => console.log(err));

@@ -28,13 +28,10 @@ export class NPS extends Component {
   async fetchAllParks() {
     try {
       const response = await getAllParks();
-      this.setState(
-        {
-          allParks: response.data,
-          loading: false,
-        },
-        () => console.log(this.state.allParks)
-      );
+      this.setState({
+        allParks: response.data,
+        loading: false,
+      });
     } catch (error) {
       this.setState({
         errorMessage: error,

@@ -45,12 +45,22 @@ export const addFavoritePark = (park, userId) => {
     .catch((error) => (`Error Adding Favorite`, error));
 };
 
-//Add to RoadTrip
-export const addParkToRoadTrip = (parkId, userId, tripName) => {
+//Add to New RoadTrip
+export const addParkToNewRoadTrip = (parkId, userId, tripName) => {
   console.log(`Lets go to the backend NOW`);
 
   return service
-    .post("/park/addToRoadTrip", { parkId, userId, tripName })
+    .post("/park/addToNewRoadTrip", { parkId, userId, tripName })
+    .then((response) => response.data)
+    .catch((error) => (`Error adding park to road trip`, error));
+};
+
+//Add to Existing RoadTrip
+export const addParkToExistingRoadTrip = (parkId, userId, tripName) => {
+  console.log(`Lets go to the backend NOW`);
+
+  return service
+    .post("/park/addToExistingRoadTrip", { parkId, userId, tripName })
     .then((response) => response.data)
     .catch((error) => (`Error adding park to road trip`, error));
 };

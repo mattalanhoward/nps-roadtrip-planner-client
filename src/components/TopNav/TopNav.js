@@ -5,7 +5,6 @@ import logo from "../../images/roadtripcolor.svg";
 
 export default class TopNav extends Component {
   render() {
-    // console.log(`PROPS in the TOPNAV`, this.props);
     const props = this.props;
     return (
       <div className="top-nav-container">
