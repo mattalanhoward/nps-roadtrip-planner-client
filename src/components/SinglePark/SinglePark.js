@@ -13,6 +13,7 @@ import {
   addParkToExistingRoadTrip,
   addParkToNewRoadTrip,
   addFavoritePark,
+  deleteExistingRoadTrip,
 } from "../../services/npsService";
 import AddToRoadTrip from "../AddToRoadTrip/AddToRoadTrip";
 
@@ -35,7 +36,7 @@ export default class SinglePark extends Component {
     successMessage: "",
     loading: true,
     roadTripPopup: false,
-    userRoadtrips: [],
+    userRoadTrips: [],
   };
 
   componentDidMount = () => {
@@ -97,24 +98,45 @@ export default class SinglePark extends Component {
 
     const { park, user } = this.props;
 
-    addParkToNewRoadTrip(park, user._id, tripName).then((response) =>
-      this.setState({
-        userRoadtrips: response.userRoadtrips,
-      })
+    addParkToNewRoadTrip(park.id, user._id, tripName).then((response) =>
+      //returns updated user.
+      this.setState(
+        {
+          userRoadTrips: response,
+        },
+        () => console.log(`State after response`, this.state.userRoadTrips)
+      )
     );
   };
 
   //Update Road Trip (Add to existing road trip.)
   addToExistingTrip = (tripName) => {
-    console.log(`Add to existing trip`, this.state.existingTripName);
     this.toggleRoadTripPopup();
     const { park, user } = this.props;
+    //returns updated user.
 
-    addParkToExistingRoadTrip(park, user, tripName).then((response) =>
-      this.setState({
-        userRoadtrips: response.userRoadtrips,
-      })
+    addParkToExistingRoadTrip(park.id, user._id, tripName).then((response) =>
+      this.setState(
+        {
+          userRoadTrips: response,
+        },
+        () => console.log(`State after response`, this.state.userRoadTrips)
+      )
     );
+  };
+
+  //Delete Road Trip
+  deleteRoadTrip = (tripName) => {
+    const { user } = this.props;
+    console.log(user._id);
+    deleteExistingRoadTrip(user._id, tripName).then((response) => {
+      this.setState(
+        {
+          userRoadTrips: response,
+        },
+        () => console.log(`State after response`, this.state.userRoadTrips)
+      );
+    });
   };
 
   render() {
@@ -126,7 +148,7 @@ export default class SinglePark extends Component {
       isOnRoadTrip,
       loading,
       roadTripPopup,
-      userRoadtrips,
+      userRoadTrips,
     } = this.state;
 
     const successStyle = isFavorite ? "add-fav" : "remove-fav";
@@ -197,7 +219,8 @@ export default class SinglePark extends Component {
                 park={props.park}
                 addToNewTrip={this.addToNewTrip}
                 addToExistingTrip={this.addToExistingTrip}
-                userRoadTrips={userRoadtrips}
+                userRoadTrips={userRoadTrips}
+                deleteRoadTrip={this.deleteRoadTrip}
               ></AddToRoadTrip>
             )}
 

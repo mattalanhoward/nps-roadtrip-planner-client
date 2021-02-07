@@ -45,7 +45,7 @@ export const addFavoritePark = (park, userId) => {
     .catch((error) => (`Error Adding Favorite`, error));
 };
 
-//Add to New RoadTrip
+//Add to New Road Trip
 export const addParkToNewRoadTrip = (parkId, userId, tripName) => {
   console.log(`Lets go to the backend NOW`);
 
@@ -55,12 +55,22 @@ export const addParkToNewRoadTrip = (parkId, userId, tripName) => {
     .catch((error) => (`Error adding park to road trip`, error));
 };
 
-//Add to Existing RoadTrip
+//Add to Existing Road Trip
 export const addParkToExistingRoadTrip = (parkId, userId, tripName) => {
   console.log(`Lets go to the backend NOW`);
 
   return service
     .post("/park/addToExistingRoadTrip", { parkId, userId, tripName })
+    .then((response) => response.data)
+    .catch((error) => (`Error adding park to road trip`, error));
+};
+
+//Delete Road Trip
+export const deleteExistingRoadTrip = (userId, tripName) => {
+  console.log(`Lets go to the backend NOW DELETE`, tripName, userId);
+
+  return service
+    .post("/park/deleteRoadTrip", { userId, tripName })
     .then((response) => response.data)
     .catch((error) => (`Error adding park to road trip`, error));
 };

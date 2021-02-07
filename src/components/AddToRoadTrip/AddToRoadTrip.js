@@ -30,7 +30,7 @@ export default class AddToRoadTrip extends Component {
 
   render() {
     const props = this.props;
-
+    console.log(props.userRoadTrips);
     const { newRoadTripName, existingTripName } = this.state;
 
     return (
@@ -55,17 +55,15 @@ export default class AddToRoadTrip extends Component {
               value={existingTripName}
               onChange={this.handleDropdownChange}
             >
-              <option value="">Select Trip</option>
               {props.user.userRoadTrips.map((roadTrip) => {
-                return (
-                  <option value={roadTrip.tripName}>{roadTrip.tripName}</option>
-                );
+                return <option value={roadTrip}>{roadTrip}</option>;
               })}
-              <option value="March 2022">March 2022</option>
-              <option value="Winter 2021">Winter 2021</option>
             </select>
             <button onClick={() => props.addToExistingTrip(existingTripName)}>
               Add To Existing Road Trip
+            </button>
+            <button onClick={() => props.deleteRoadTrip(existingTripName)}>
+              Delete Road Trip
             </button>
           </div>
         </div>
