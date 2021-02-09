@@ -51,11 +51,15 @@ export default class AddToRoadTrip extends Component {
         </div>
         <div>
           <select value={existingTripName} onChange={this.handleDropdownChange}>
-            <option value="" selected disabled hidden>
+            <option value="" defaultValue disabled hidden>
               Select Road Trip
             </option>
-            {props.user.userRoadTrips.map((roadTrip) => {
-              return <option value={roadTrip}>{roadTrip}</option>;
+            {props.user.userRoadTrips.map((roadTrip, idx) => {
+              return (
+                <option key={idx} value={roadTrip}>
+                  {roadTrip}
+                </option>
+              );
             })}
           </select>
           <button onClick={() => props.addToExistingTrip(existingTripName)}>
