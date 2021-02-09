@@ -36,36 +36,34 @@ export default class AddToRoadTrip extends Component {
     return (
       <section id="add-to-road-trip">
         <h1>Add {props.park.fullName} to roadtrip?</h1>
-        <div className="road-trip-input-container">
-          <div>
-            <input
-              name="newRoadTripName"
-              value={newRoadTripName}
-              onChange={this.handleChange}
-              type="text"
-              placeholder="New Road Trip Name"
-            />
-            <button onClick={() => props.addToNewTrip(newRoadTripName)}>
-              {" "}
-              Enter New Road Trip Name{" "}
-            </button>
-          </div>
-          <div>
-            <select
-              value={existingTripName}
-              onChange={this.handleDropdownChange}
-            >
-              {props.user.userRoadTrips.map((roadTrip) => {
-                return <option value={roadTrip}>{roadTrip}</option>;
-              })}
-            </select>
-            <button onClick={() => props.addToExistingTrip(existingTripName)}>
-              Add To Existing Road Trip
-            </button>
-            <button onClick={() => props.deleteRoadTrip(existingTripName)}>
-              Delete Road Trip
-            </button>
-          </div>
+        <div>
+          <input
+            name="newRoadTripName"
+            value={newRoadTripName}
+            onChange={this.handleChange}
+            type="text"
+            placeholder="New Road Trip Name"
+          />
+          <button onClick={() => props.addToNewTrip(newRoadTripName)}>
+            {" "}
+            Enter New Road Trip Name{" "}
+          </button>
+        </div>
+        <div>
+          <select value={existingTripName} onChange={this.handleDropdownChange}>
+            <option value="" selected disabled hidden>
+              Select Road Trip
+            </option>
+            {props.user.userRoadTrips.map((roadTrip) => {
+              return <option value={roadTrip}>{roadTrip}</option>;
+            })}
+          </select>
+          <button onClick={() => props.addToExistingTrip(existingTripName)}>
+            Add To Existing Road Trip
+          </button>
+          <button onClick={() => props.deleteRoadTrip(existingTripName)}>
+            Delete Road Trip
+          </button>
         </div>
       </section>
     );

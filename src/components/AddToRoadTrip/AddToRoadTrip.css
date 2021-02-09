@@ -1,11 +1,26 @@
 #add-to-road-trip {
-  border: 3px solid red;
-  background-color: white;
+  width: 800px;
+  height: 200px;
   position: fixed;
+  margin-top: -100px;
+  margin-left: -400px;
   top: 50%;
   left: 50%;
-  width: 50%;
-  height: 20%;
-  margin-left: -25%;
-  margin-top: -10%;
+  background-color: rgba(255, 255, 255, 0.87);
+  display: flex;
+  justify-content: center;
+  align-items: space-evenly;
+  text-align: center;
+  flex-direction: column;
+  border-radius: 3px;
+  border: 1px solid grey;
+  z-index: 1;
+}
+
+#add-to-road-trip div {
+  /* border: 2px solid red; */
+  width: 80%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-between;
 }
