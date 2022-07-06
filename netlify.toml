@@ -4,5 +4,5 @@
   status = 200
 [[redirects]]
   from = “/*”
-  to = “/index.html”
+  to = “/src/index.html”
   status = 200
