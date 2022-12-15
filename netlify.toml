@@ -1,5 +1,1 @@
-  [[redirects]]
-  from = "/api/*"
-   to = “https://developer.nps.gov/api/:splat"
-  status = 200
-  force = true
+
